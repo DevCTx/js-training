@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Clic sur H1</title>
+</head>
+<body>
+    <h1 onclick="afficherMessage()">Cliquez sur ce titre</h1>
+    <p id="message"></p>
+    
+    <script>
+        function afficherMessage() {
+            document.getElementById('message').textContent = 'Vous avez cliqué sur le titre !';
+        }
+    </script>
+</body>
+</html>

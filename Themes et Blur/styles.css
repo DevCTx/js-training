@@ -1,0 +1,86 @@
+:root {
+  --text-color : black;
+  --text-rgb : 255, 255, 255;
+  --background-color : white;
+}
+
+body.theme-light {
+  --text-color : black;
+  --text-rgb : 0, 0, 0;
+  --background-color : white;
+}
+
+body.theme-dark {
+  --text-color : white;
+  --text-rgb : 255, 255, 255;
+  --background-color : black;
+}
+
+body.theme-ocean {
+  --text-color : skyblue;
+  --text-rgb : 135, 236, 235;
+  --background-color : navy;
+}
+
+body.theme-nature {
+  --text-color : darkolivegreen;
+  --text-rgb : 85, 107, 47;
+  --background-color : darkseagreen;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color : var(--background-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+
+
+#theme-switcher-button {
+  background-color: IndianRed;
+  color: white;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  z-index: 5;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 30px;
+  left: 0px;
+  z-index: 5;
+  width: 7em;
+  box-shadow : 2px 4px 10px rgba(var(--text-rgb), 0.5);
+  background-color: var(--background-color);
+}
+
+li {
+  list-style-type: none;
+}
+
+[role = "menuitem"] {
+  padding : 5px;
+
+}
+
+[role = "menuitem"]:hover {
+  background-color: IndianRed;
+  color:white;
+}
+
+#status {
+  text-align: center;
+  min-height: 20px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

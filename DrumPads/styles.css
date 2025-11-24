@@ -1,0 +1,71 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body{
+  margin:0;
+  padding:0;
+  background-color:rgb(30, 30, 64);
+}
+
+#drum-machine {
+  background-color: rgb(0, 0, 96);
+  diplay:inline-block;
+  width:400px;
+  height:500px;
+  margin:50px auto;
+  padding:30px;
+  border-radius: 30px;
+  border: 5px solid transparent;
+  box-shadow: 4px 7px 200px rgb(255, 0, 238);
+  background: 
+    linear-gradient(rgb(32, 0, 161), rgba(255, 0, 238, 0.156)) padding-box,
+    linear-gradient(45deg, rgb(32, 0, 161), rgb(255, 0, 238)) border-box;
+}
+
+#pad-bank {
+  background-color:  rgb(19, 0, 96);
+  border-radius: 15px;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  padding:auto;
+  place-items:center;
+  align-items:center;
+}
+
+.drum-pad {
+  background: 
+    linear-gradient(-45deg, gold, orange) padding-box,
+    linear-gradient(45deg,gold, orange ) border-box;
+  border : 4px solid transparent;
+  border-radius: 10px;
+  width:80%;
+  height:80%;
+  font-size:40px;  
+  align-content:center;
+  text-align:center;
+  user-select: none;  // Supprime le curseur sur le text du bouton
+  cursor:pointer;
+}
+
+.drum-pad:active {
+  background: 
+    linear-gradient(orange, yellow) padding-box,
+    linear-gradient(45deg, orange, gold) border-box;
+  
+  text-shadow: 
+    0 0 5px white,
+    0 0 20px white,
+    0 0 40px white;
+  
+}
+
+#display {
+  color : gold;
+  font-family : Ubuntu;
+  font-size : 40px;
+  text-align:center;
+  align-content:center;
+  height:50px;
+}
