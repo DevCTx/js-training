@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="city-weather">
+      <p id="location" class="space-envenly" >Location</p>
+      <div id="temperature-icon" class="space-envenly">
+        <span id="main-temperature">Main Temperature</span>
+        <span id="weather-info">
+          <img id="weather-icon" src="https://dummyimage.com/100x100/000/fff" alt="Weather Icon"/>
+          <span id="weather-description">Name</span>
+        </span>
+      </div>
+      <hr>
+      <div id="humidity-like" class="space-envenly" >
+        <p>Humidity : <span id="humidity"></span></p>
+        <p>Feel Like : <span id="feels-like"></span></p>
+      </div>
+      <div id="wind-compass" class="space-envenly" >
+        <span>
+          <p>Wind : <span id="wind"></span></p>
+          <p>Gusts : <span id="wind-gust"></span></p>
+        </span>
+        <p>Main Weather : <span id="weather-main"></span></p>
+      </div>
+    </div>
+    <div id="cmd-weather">
+      <p>Weather for :</p>
+      <select id="city-opt" name="city-opt">
+        <option value=""></option>
+        <option value="paris">Paris</option>
+        <option value="london">London</option>
+        <option value="tokyo">Tokyo</option>
+        <option value="los angeles">Los Angeles</option>
+        <option value="chicago">Chicago</option>
+        <option value="new york">New York</option>
+      </select>
+      <button id="get-weather-btn">Get Weather</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

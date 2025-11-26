@@ -16,39 +16,13 @@ body {
   min-width : 20rem;
 }
 
-#cmd-weather {
-  margin: 10px 10px;
-  padding : 5px 20px;
-
-  border-radius: 30px ;
-  display : flex;
-  flex-direction : column;
-  justify-content: center;
-  align-items: center;
-}
-
-#cmd-weather > * {
-  margin: 10px 10px;
-  padding : 5px 20px;
-
-  text-align : center;
-  justify-items:center;
-  max-width : 10rem;
-}
-
-#get-weather-btn {
-  border-radius : 5px;
-  background-color : blue;
-  font-weight: bold;
-  color : white;
-}
-
 #city-weather {
   margin : 20px;
   border-radius: 30px ;
   display : flex;
   flex-direction : column;
   justify-content: center;
+  font-size : 2rem;
 }
 
 #city-weather > * :not(hr){
@@ -56,11 +30,15 @@ body {
   padding : 10px 0px ;
 }
 
+#main-temperature {
+  min-width: 200px;
+  text-align : center;
+}
+
 .space-envenly {
   display : flex;
   flex-direction : column;
   align-items: center;
-  justify-content : space-evenly;
 }
 
 #location {
@@ -76,14 +54,51 @@ body {
   margin : 20px;
 }
 
-span {
+#weather-info {
+  display : flex;
   align-items: center;
+  gap : 10px;
 }
 
 hr {
   border: 1px solid rgba(0, 0, 255, 0.25);
   margin: 20px 0;
 }
+
+#cmd-weather {
+  margin: 10px 10px;
+  padding : 5px 20px;
+
+  border-radius: 30px ;
+  display : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#cmd-weather > * {
+  margin: 10px 10px;
+  padding : 5px 10px;
+
+  text-align : center;
+  justify-items:center;
+  max-width : 10rem;
+  font-size : 1.1rem;
+}
+
+#cmd-weather > p {
+  font-size : 1.3rem;
+}
+
+#get-weather-btn {
+  padding : 5px 20px;
+  border-radius : 5px;
+  background-color : blue;
+  font-weight: bold;
+  color : white;
+}
+
 
 @media screen and (min-width: 768px) {
   #city-weather{

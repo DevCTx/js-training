@@ -13,11 +13,13 @@ const addBookmarkButtonForm = document.getElementById('add-bookmark-button-form'
 
 // UserCase 1
 let bookmarks = [];
-function getBookmarks(  ) {
-  const bookmarks = JSON.parse( localStorage.getItem("bookmarks") ) || [];
+function getBookmarks( category ) {
+  const allBookmarks = JSON.parse( localStorage.getItem("bookmarks") ) || [];
 
-  return bookmarks.filter((bookmark) => 
-    (bookmark.name && bookmark.category && bookmark.url && bookmark.category === category) );
+  // Filter by category and validate
+  return allBookmarks.filter((bookmark) => 
+    bookmark.name && bookmark.category && bookmark.url && bookmark.category === category
+  );
 }
 
 function saveBookmarks( bookmarksObj ) {
@@ -32,7 +34,7 @@ function displayOrCloseForm() {
 
 function getCategoryOption() {
   categoryDropdown = document.getElementById("category-dropdown");
-  const categoryOption = categoryDropdown.querySelector(`option[value='${categoryDropdown.value}']`);
+  const categoryOption = categoryDropdown.querySelector(`option[value="${categoryDropdown.value}"]`);
 
   return categoryOption ? categoryOption.innerText : "";
 }
@@ -60,9 +62,10 @@ addBookmarkButtonForm.addEventListener("click", () => {
     url : bookmarkUrl.value,
   }
 
-  bookmarks = getBookmarks();
-  bookmarks.push(bookmarkObj);
-  saveBookmarks( bookmarks );
+  // Get ALL bookmarks from localStorage
+  const allBookmarks = JSON.parse( localStorage.getItem("bookmarks") ) || [];
+  allBookmarks.push(bookmarkObj);
+  saveBookmarks( allBookmarks );
 
   // UserCase 7
   bookmarkName.value = "";
@@ -82,10 +85,7 @@ viewCategoryButton.addEventListener("click", () => {
   const categoryName = document.querySelector(`#bookmark-list-section .category-name`);
   categoryName.innerText = getCategoryOption();
 
-  allBookmarks = getBookmarks();  
-  bookmarks = allBookmarks.filter((bookmark) => 
-    bookmark.category === categoryDropdown.value
-  );
+  bookmarks = getBookmarks( categoryDropdown.value );  
   const categoryList = document.getElementById("category-list");
 
   // User Case 10
@@ -96,9 +96,10 @@ viewCategoryButton.addEventListener("click", () => {
     //User Case 11/12    
     let msgHTML = "";
     for (const bookmark of bookmarks) {
-      msgHTML += `<input type='radio' name='radioBookmark'  
-        id='${bookmark.name}' value='${bookmark.name}'>
-        <label for='${bookmark.name}'><a href='${bookmark.url}'>${bookmark.name}</a></label>`
+      msgHTML += `<div>
+        <input type='radio' name='radioBookmark' id='${bookmark.name}' value='${bookmark.name}'>
+        <label for='${bookmark.name}'><a href='${bookmark.url}'>${bookmark.name}</a></label>
+      </div>`;
     }
     categoryList.innerHTML = msgHTML;
   }
@@ -115,14 +116,35 @@ closeListButton.addEventListener("click", () => {
 deleteBookmarkButton.addEventListener("click", () => {
   const radioBookmark = document.querySelector("input[name='radioBookmark']:checked");
   if (radioBookmark) {
-    bookmarks = getBookmarks();
-    const index = bookmarks.findIndex((bm) => (
-      bm.name === radioBookmark.value && bm.category === categoryDropdown.value ));
+    // Get ALL bookmarks
+    const allBookmarks = JSON.parse( localStorage.getItem("bookmarks") ) || [];
+    
+    // Find and remove the bookmark
+    const index = allBookmarks.findIndex((bm) => 
+      bm.name === radioBookmark.value && bm.category === categoryDropdown.value
+    );
     
     if (index !== -1) {
-      bookmarks.splice(index,1);
-      saveBookmarks( bookmarks );
-    } 
-    displayOrHideCategory();
+      allBookmarks.splice(index, 1);
+      saveBookmarks( allBookmarks );
+    }
+    
+    // Refresh the displayed list
+    bookmarks = getBookmarks( categoryDropdown.value );
+    const categoryList = document.getElementById("category-list");
+    
+    if (!bookmarks.length){
+      categoryList.innerHTML = "<p>No Bookmarks Found</p>"
+    }
+    else{ 
+      let msgHTML = "";
+      for (const bookmark of bookmarks) {
+        msgHTML += `<div>
+          <input type='radio' name='radioBookmark' id='${bookmark.name}' value='${bookmark.name}'>
+          <label for='${bookmark.name}'><a href='${bookmark.url}'>${bookmark.name}</a></label>
+        </div>`;
+      }
+      categoryList.innerHTML = msgHTML;
+    }
   }
-});
+})
